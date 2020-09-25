@@ -4,10 +4,10 @@ const fetch = require("node-fetch");
 const mathjax = require("mathjax-node");
 mathjax.config({
     MathJax: {
-        // default
+        // use the default MathJax configuration
     }
 });
-mathjax.start();
+mathjax.start();  // Loads the configuration, per https://github.com/mathjax/MathJax-node#start
 
 
 /* Check that we receive exactly one command line argument,
