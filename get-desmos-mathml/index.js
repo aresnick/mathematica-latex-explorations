@@ -17,14 +17,14 @@ const validHash =
     process.argv[2].match(/^[a-z0-9]{10}$/) !== null;
 
 console.assert(
-    validHash,
-    "Expected a ten character, lowercase hash, received",
+    validId,
+    "Expected a ten character, lowercase id, received",
     process.argv.slice(2).join(" ")
 );
 
 // If we get a valid hash, assign it
-if (validHash) {
-    const hash = process.argv[2];;
+if (validId) {
+    const id = process.argv[2];;
 
     // Observed by inspecting network traffic 
     // on desmos.com/calculator when clicking Save
@@ -39,8 +39,8 @@ if (validHash) {
         "Endpoints cannot have trailing slashes,", endpoints);
 
     // Construct and GET the state url
-    async function getCalcState(hash) {
-        const stateURL = [endpoints.state, hash].join('/')
+    async function getCalcState(id) {
+        const stateURL = [endpoints.state, id].join('/')
         const response = await fetch(stateURL);
         const data = await response.json()
         return data;
@@ -70,7 +70,7 @@ if (validHash) {
     }
 
     // Get the state
-    getCalcState(hash)
+    getCalcState(id)
         .then(function(state) {
             // Enrich with MathML
             addMathMLToCalcState(state)
