@@ -1,0 +1,16 @@
+{
+  "name": "get-desmos-ast",
+  "version": "0.0.1",
+  "description": "Sample script parsing a MathML syntax tree from a Desmos URL",
+  "main": "mml-parse.js",
+  "dependencies": {
+    "mathjax-node": "^2.1.1",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
