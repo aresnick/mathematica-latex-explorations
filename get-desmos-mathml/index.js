@@ -72,6 +72,7 @@ if (validHash) {
     // Get the state
     getCalcState(hash)
         .then(function(state) {
+            // Enrich with MathML
             addMathMLToCalcState(state)
             .then(mmledState => console.log(mmledState));
         });
