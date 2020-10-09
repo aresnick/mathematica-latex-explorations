@@ -12,7 +12,7 @@ mathjax.start();  // Loads the configuration, per https://github.com/mathjax/Mat
 
 /* Check that we receive exactly one command line argument,
 and that it is a ten character, lower case hash */
-const validHash =
+const validId =
     process.argv.length == 3 &&
     process.argv[2].match(/^[a-z0-9]{10}$/) !== null;
 
