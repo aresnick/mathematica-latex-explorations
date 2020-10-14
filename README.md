@@ -19,8 +19,8 @@ Select excerpts from [the original Slack thread](https://pbllprojectteam.slack.c
 > * Is `e^x` exponential in `e` or constant or both?  How should multivariate expressions be handled (e.g. if e were a variable rather than constant?)
 > * Is `(x+1)(x-1)` linear and quadratic or just quadratic?
 > * Is `e^(x^2)` exponential in `x` or in `e`.  Quadratic?
-> * For functions with shifting periods (e.g. sin(e^x) or sin(x^2)), should they be considered periodic?
-> * How should expressions whose degree would change in simplification be handled?  e.g. `x/(x + 1) + x/(x - 1)` is ostensibly linear or hyperbolic, but reduced would be equal to `(2 x^2)/(-1 + x^2)`; should it be quadratic?
+> * For functions with shifting periods (_e.g._ `sin(e^x)` or `sin(x^2)`), should they be considered periodic?
+> * How should expressions whose degree would change in simplification be handled?  _e.g._ `x/(x + 1) + x/(x - 1)` is ostensibly linear or hyperbolic, but reduced would be equal to `(2 x^2)/(-1 + x^2)`; should it be quadratic?
 > 
 > A: These are some of the kinds of questions which I think highlight the relatively poorly-posed conceptual nature of the "degree" question (aside from whether it is pedagogically useful).
 > 
