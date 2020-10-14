@@ -1,0 +1,391 @@
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "A toy function parsing expression order from ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"L", 
+     StyleBox[
+      AdjustmentBox["A",
+       BoxBaselineShift->-0.4,
+       BoxMargins->{{-0.5, -0.3}, {0, 0}}],
+      FontSize->Smaller], "T", 
+     AdjustmentBox["E",
+      BoxBaselineShift->0.5,
+      BoxMargins->{{-0.3, 0}, {0, 0}}], "X"}],
+    SingleLetterItalics->False], TraditionalForm]],ExpressionUUID->
+  "3721c14a-5ca1-4653-957e-f64606bbbc81"],
+ " input"
+}], "Title",ExpressionUUID->"565f7a86-2d79-4048-92c3-bde08b6e6a5e"],
+
+Cell[CellGroupData[{
+
+Cell["The function", \
+"Section",ExpressionUUID->"ec21e880-af42-40dc-af6a-bd651627ec84"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"detectOrderOfTeXExpression", "[", 
+   RowBox[{"string_", ",", 
+    RowBox[{"form_", ":", "TeXForm"}]}], "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Declare", " ", "our", " ", "local", " ", "variables"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "expression", ",", "monomials", ",", "variables", ",", "exponents", ",", 
+      "periods"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+       "Convert", " ", "our", " ", "string", " ", "to", " ", "an", " ", 
+        "expression"}], ";", " ", 
+       RowBox[{"LaTeX", " ", "is", " ", "the", " ", "default"}]}], ",", " ", 
+      RowBox[{
+      "can", " ", "also", " ", "accept", " ", "MathML", " ", "et", " ", 
+       "al"}], ",", " ", 
+      RowBox[{
+       RowBox[{"as", " ", "listed", " ", "at", " ", 
+        RowBox[{"https", ":"}]}], "//", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"reference", ".", "wolfram", ".", "com"}], "/", 
+           "language"}], "/", "tutorial"}], "/", 
+         RowBox[{"TextualInputAndOutput", ".", "html"}]}], "#12368"}]}]}], 
+     " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"expression", "=", 
+      RowBox[{"ToExpression", "[", 
+       RowBox[{"string", ",", "form"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "Extract", " ", "variables", " ", "by", " ", "deleting", " ", 
+        "everything", " ", "that", " ", 
+        RowBox[{"isn", "'"}], "t", " ", "a", " ", "Symbol"}], ",", " ", 
+       RowBox[{
+       "recursing", " ", "infinitely", " ", "down", " ", "the", " ", 
+        "expression", " ", "tree"}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"variables", "=", 
+      RowBox[{"Union", "@", 
+       RowBox[{"Cases", "[", 
+        RowBox[{"expression", ",", 
+         RowBox[{"Except", "[", 
+          RowBox[{
+           RowBox[{"__Symbol", "?", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Context", "@", "#"}], "===", "\"\<System`\>\""}], 
+              "&"}], ")"}]}], ",", "_Symbol"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "\[Infinity]"}], "}"}], ",", 
+         RowBox[{"Heads", "\[Rule]", "True"}]}], "]"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"monomials", "=", 
+      RowBox[{"MonomialList", "[", "expression", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Extract", " ", "the", " ", "largest", " ", "exponent", " ", "to", " ", 
+       "which", " ", "every", " ", "detected", " ", "variable", " ", 
+       "appears"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"exponents", "=", 
+      RowBox[{"AssociationMap", "[", 
+       RowBox[{
+        RowBox[{"Function", "[", 
+         RowBox[{
+          RowBox[{"{", "variable", "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"DeleteDuplicates", "@", 
+           RowBox[{"Flatten", "[", 
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{"(*", 
+              RowBox[{
+              "Extract", " ", "cases", " ", "where", " ", "the", " ", 
+               "variable", " ", "is", " ", "raised", " ", "to", " ", "an", 
+               " ", "exponent"}], "*)"}], "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"Cases", "[", 
+                 RowBox[{
+                  RowBox[{"FullForm", "[", "#", "]"}], ",", 
+                  RowBox[{
+                   RowBox[{"Power", "[", 
+                    RowBox[{"variable", ",", "exp_"}], "]"}], 
+                   "\[RuleDelayed]", "exp"}], ",", "All"}], "]"}], "&"}], "/@",
+                "monomials"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"(*", 
+               RowBox[{
+                RowBox[{
+                "Extract", " ", "cases", " ", "where", " ", "the", " ", 
+                 "variable", " ", "appears", " ", "linearly"}], ",", " ", 
+                RowBox[{
+                "filtering", " ", "the", " ", "monomials", " ", "for", " ", 
+                 "those", " ", "where", " ", "the", " ", "variable", " ", 
+                 "appears", " ", "with", " ", "an", " ", "exponent"}]}], 
+               "*)"}], "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Cases", "[", 
+                 RowBox[{
+                  RowBox[{"FullForm", "[", "#", "]"}], ",", 
+                  RowBox[{"variable", "\[RuleDelayed]", "1"}], ",", "All"}], 
+                 "]"}], "&"}], "/@", 
+               RowBox[{"(", 
+                RowBox[{"DeleteCases", "[", 
+                 RowBox[{"monomials", ",", 
+                  RowBox[{"Power", "[", 
+                   RowBox[{"variable", ",", "_"}], "]"}], ",", "Infinity"}], 
+                 "]"}], ")"}]}]}], "\[IndentingNewLine]", "}"}], "]"}]}]}], 
+         "]"}], "\[IndentingNewLine]", ",", "variables"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Determine", " ", "the", " ", "periods", " ", "of", " ", "the", " ", 
+       "function", " ", "in", " ", "each", " ", "variable", " ", "detected"}],
+       "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"periods", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"FunctionPeriod", "[", 
+         RowBox[{"expression", ",", "#"}], "]"}], "&"}], "/@", 
+       "variables"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Return", " ", "an", " ", "association", " ", "examining", " ", "the", 
+       " ", "values", " ", "constructed", " ", "above"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"<|", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\"\<degree\>\"", "\[Rule]", "  ", 
+        RowBox[{"AssociationMap", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"<|", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"\"\<Linear\>\"", "\[Rule]", 
+              RowBox[{"MemberQ", "[", 
+               RowBox[{
+                RowBox[{"exponents", "[", "#", "]"}], ",", "1"}], "]"}]}], 
+             ",", "\[IndentingNewLine]", 
+             RowBox[{"\"\<Quadratic\>\"", "\[Rule]", " ", 
+              RowBox[{"MemberQ", "[", 
+               RowBox[{
+                RowBox[{"exponents", "[", "#", "]"}], ",", "2"}], "]"}]}], 
+             ",", "\[IndentingNewLine]", 
+             RowBox[{"\"\<Cubic\>\"", "\[Rule]", " ", 
+              RowBox[{"MemberQ", "[", 
+               RowBox[{
+                RowBox[{"exponents", "[", "#", "]"}], ",", "3"}], "]"}]}], 
+             ",", "\[IndentingNewLine]", 
+             RowBox[{"\"\<Higher Order Polynomial\>\"", "\[Rule]", 
+              RowBox[{"AnyTrue", "[", 
+               RowBox[{
+                RowBox[{"exponents", "[", "#", "]"}], ",", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"#", ">", "3"}], "===", "True"}], "&"}]}], "]"}]}], 
+             ",", "\[IndentingNewLine]", 
+             RowBox[{"(*", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                "Note", " ", "that", " ", "this", " ", "returns", " ", "true",
+                  " ", "for", " ", "any", " ", "non"}], "-", 
+                RowBox[{"numeric", " ", "exponents"}]}], ",", " ", 
+               RowBox[{"including", " ", "Complex"}]}], "*)"}], 
+             "\[IndentingNewLine]", 
+             RowBox[{"\"\<Exponential\>\"", "\[Rule]", 
+              RowBox[{"AnyTrue", "[", 
+               RowBox[{
+                RowBox[{"exponents", "[", "#", "]"}], ",", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Not", "@", 
+                   RowBox[{"NumericQ", "@", "#"}]}], "===", "True"}], "&"}]}],
+                "]"}]}]}], "\[IndentingNewLine]", "|>"}], "&"}], ",", 
+          "variables"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"A", " ", "field", " ", "for", " ", "expression"}], "-", 
+         RowBox[{
+         "wide", " ", "characeteristics", " ", "which", " ", "are", " ", 
+          "not", " ", "the", " ", "degree"}]}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"\"\<character\>\"", "\[Rule]", " ", 
+        RowBox[{"<|", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\"\<Has Constant Term\>\"", "->", 
+           RowBox[{
+            RowBox[{"Length", "@", 
+             RowBox[{"Cases", "[", 
+              RowBox[{
+               RowBox[{"MonomialList", "[", "expression", "]"}], ",", 
+               RowBox[{"_", "?", "NumericQ"}]}], "]"}]}], ">", "0"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<Complex\>\"", "\[Rule]", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"ComplexExpand", "@", 
+               RowBox[{"Im", "@", "expression"}]}], "\[NotEqual]", "0"}], 
+             ")"}], "===", "True"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"\"\<Periodic\>\"", "\[Rule]", 
+           RowBox[{"AnyTrue", "[", 
+            RowBox[{"periods", ",", 
+             RowBox[{
+              RowBox[{"#", "\[NotEqual]", "0"}], "&"}]}], "]"}]}]}], 
+         "\[IndentingNewLine]", "|>"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Pass", " ", "along", " ", "the", " ", "original", " ", "data", " ", 
+         "we", " ", "derived", " ", "these", " ", "from", " ", "for", " ", 
+         "convenience", " ", "of", " ", "debugging"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"\"\<data\>\"", "\[Rule]", " ", 
+        RowBox[{"<|", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\"\<expression\>\"", "\[Rule]", "expression"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<monomials\>\"", "\[Rule]", "monomials"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<variables\>\"", "\[Rule]", "variables"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<exponents\>\"", "\[Rule]", "exponents"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<periods\>\"", "\[Rule]", "periods"}]}], 
+         "\[IndentingNewLine]", "|>"}]}]}], "\[IndentingNewLine]", "|>"}]}]}],
+    "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellLabel->
+  "In[19]:=",ExpressionUUID->"0e371172-3aad-4c81-944f-6a448f70255d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Testing our function with a few examples of ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"L", 
+     StyleBox[
+      AdjustmentBox["A",
+       BoxBaselineShift->-0.4,
+       BoxMargins->{{-0.5, -0.3}, {0, 0}}],
+      FontSize->Smaller], "T", 
+     AdjustmentBox["E",
+      BoxBaselineShift->0.5,
+      BoxMargins->{{-0.3, 0}, {0, 0}}], "X"}],
+    SingleLetterItalics->False], TraditionalForm]],ExpressionUUID->
+  "913f3e94-9710-46af-b726-2610d605dbef"],
+ " input"
+}], "Section",ExpressionUUID->"78e657ec-9c25-433a-a674-8d7d93ccd9b7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"prettyPrint", "[", "analysis_", "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"exprDesc", ",", "degreeDesc", ",", "characterDesc"}], "}"}], 
+    ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"exprDesc", "=", 
+      RowBox[{"TraditionalForm", "[", 
+       RowBox[{
+        RowBox[{"analysis", "[", "\"\<data\>\"", "]"}], "[", 
+        "\"\<expression\>\"", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"degreeDesc", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"StringRiffle", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"PositionIndex", "[", 
+              RowBox[{
+               RowBox[{"analysis", "[", "\"\<degree\>\"", "]"}], "[", "#", 
+               "]"}], "]"}], "[", "True", "]"}], ",", "\"\< & \>\""}], "]"}], 
+          ",", "\[IndentingNewLine]", "\"\<in\>\"", ",", 
+          "\[IndentingNewLine]", "#"}], "}"}], "&"}], "/@", 
+       RowBox[{
+        RowBox[{"analysis", "[", "\"\<data\>\"", "]"}], "[", 
+        "\"\<variables\>\"", "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"characterDesc", "=", 
+      RowBox[{"Lookup", "[", 
+       RowBox[{
+        RowBox[{"PositionIndex", "[", 
+         RowBox[{"analysis", "[", "\"\<character\>\"", "]"}], "]"}], ",", 
+        "True", ",", "Null"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"exprDesc", ",", "\[IndentingNewLine]", 
+       RowBox[{"StringRiffle", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"StringRiffle", "[", 
+            RowBox[{"#", ",", "\"\< \>\""}], "]"}], "&"}], "/@", 
+          "degreeDesc"}], ",", "\"\<\\n\>\""}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"characterDesc", "===", "Null"}], ",", "\"\<\>\"", ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"StringRiffle", "[", 
+          RowBox[{"characterDesc", ",", " ", "\"\< & \>\""}], "]"}]}], 
+        "]"}]}], " ", "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]",
+    "]"}]}]], "Input",
+ CellLabel->"In[20]:=",ExpressionUUID->"8d639b8d-f9c8-4ca7-a0d3-9671d16ecfe0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Join", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Expression\>\"", ",", "\"\<Degree\>\"", ",", "\"\<Character\>\""}],
+       "}"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"prettyPrint", "[", 
+       RowBox[{"detectOrderOfTeXExpression", "[", "#", "]"}], "]"}], "&"}], "/@", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+      "\"\<x\>\"", ",", "\[IndentingNewLine]", "\"\<x^2\>\"", ",", 
+       "\[IndentingNewLine]", "\"\<(x+1)(x+1)\>\"", ",", 
+       "\[IndentingNewLine]", "\"\<(x+1)(x-1)\>\"", ",", 
+       "\[IndentingNewLine]", "\"\<e^x\>\"", ",", "\[IndentingNewLine]", 
+       "\"\<e^(x^2)\>\"", ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Note", " ", "that", " ", "TeX", " ", "expressions", " ", "need", " ",
+          "to", " ", "be", " ", "properly", " ", "escaped"}], "*)"}], 
+       "\[IndentingNewLine]", "\"\<\\\\sin(x)\>\"", ",", 
+       "\[IndentingNewLine]", "\"\<(\\\\sin(x))^2\>\""}], 
+      "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", "]"}], "//", 
+  RowBox[{
+   RowBox[{"TextGrid", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}], "&"}]}]], "Input",
+ CellLabel->
+  "In[21]:=",ExpressionUUID->"c5543d8d-f84d-407b-843e-f558957ce063"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{960, 1035},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+TrackCellChangeTimes->False,
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 9, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"86ca686e-64c5-4d8f-b702-a9b258ecada6"
+]
