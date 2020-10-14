@@ -16,7 +16,7 @@ Select excerpts from [the original Slack thread](https://pbllprojectteam.slack.c
 > 
 > A: […] Generalized it a bit and added a missing edge case— Here's the revised code and test. […] Note there are a few questions to address as a matter of categorizing things appropriately… […] Some subtleties these and related examples raise:
 > 
-> * Is `e^x` exponential in `e` or constant or both?  How should multivariate expressions be handled (e.g. if e were a variable rather than constant?)
+> * Is `e^x` exponential in `e` or constant or both?  How should multivariate expressions be handled (_e.g._ if `e` were a variable rather than constant?)
 > * Is `(x+1)(x-1)` linear and quadratic or just quadratic?
 > * Is `e^(x^2)` exponential in `x` or in `e`.  Quadratic?
 > * For functions with shifting periods (_e.g._ `sin(e^x)` or `sin(x^2)`), should they be considered periodic?
