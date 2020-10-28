@@ -10,59 +10,69 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      7447,        180]
-NotebookOptionsPosition[      7102,        166]
-NotebookOutlinePosition[      7493,        182]
-CellTagsIndexPosition[      7450,        179]
+NotebookDataLength[      9602,        249]
+NotebookOptionsPosition[      8560,        221]
+NotebookOutlinePosition[      8951,        237]
+CellTagsIndexPosition[      8908,        234]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "A toy function parsing ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"L", 
+     StyleBox[
+      AdjustmentBox["A",
+       BoxBaselineShift->-0.4,
+       BoxMargins->{{-0.5, -0.3}, {0, 0}}],
+      FontSize->Smaller], "T", 
+     AdjustmentBox["E",
+      BoxBaselineShift->0.5,
+      BoxMargins->{{-0.3, 0}, {0, 0}}], "X"}],
+    SingleLetterItalics->False], TraditionalForm]],ExpressionUUID->
+  "b2593285-4ccf-4648-aa23-cf3d2e675084"],
+ " and disambiguating function calls from multiplication"
+}], "Title",
+ CellChangeTimes->{{3.812881293122143*^9, 3.812881296721847*^9}, {
+  3.812881524593061*^9, 
+  3.812881540838354*^9}},ExpressionUUID->"f2153bcc-6803-4a04-b63c-\
+cb62dd2b4418"],
+
+Cell["\<\
+This is a toy function which given a LaTeX string, returns a Mathematica \
+expression.  It was written assuming the input string is a function \
+definition,as in f(x)=2(a+3x).  Because parentheses are not explicitly \
+function calls or multiplication, the general problem is ill-posed.  Here we \
+use the function and arguments implied by the left hand side to \
+\[OpenCurlyDoubleQuote]fix\[CloseCurlyDoubleQuote] Mathematica\
+\[CloseCurlyQuote]s naive conversion of all parentheses to function calls.  \
+i.e. by default, Mathematica will convert \[OpenCurlyDoubleQuote]f(x)=m(a+3x)\
+\[CloseCurlyDoubleQuote] to \[OpenCurlyDoubleQuote]f[x]=m[a+3x]\
+\[CloseCurlyDoubleQuote].  This demonstrates one strategy to avoid this.\
+\>", "Text",
+ CellChangeTimes->{{3.8128812620720053`*^9, 
+  3.812881276219816*^9}},ExpressionUUID->"a74dab2c-ac35-496f-9827-\
+43023f63f2d7"],
+
+Cell[CellGroupData[{
+
+Cell["The function", "Section",
+ CellChangeTimes->{{3.812881556746229*^9, 
+  3.812881559097814*^9}},ExpressionUUID->"3e82252c-d53a-46d0-adcb-\
+0c3b002c3e97"],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{
    RowBox[{"deTeXify", "[", "texString_", "]"}], ":=", 
    RowBox[{"Module", "[", "\[IndentingNewLine]", 
     RowBox[{"(*", 
-     RowBox[{
-      RowBox[{
-      "This", " ", "is", " ", "a", " ", "toy", " ", "function", " ", "which", 
-       " ", "given", " ", "a", " ", "LaTeX", " ", "string"}], ",", " ", 
-      RowBox[{"returns", " ", "a", " ", "Mathematica", " ", 
-       RowBox[{"expression", ".", "  ", "It"}], " ", "was", " ", "written", 
-       " ", "assuming", " ", "the", " ", "input", " ", "string", " ", "is", 
-       " ", "a", " ", "function", " ", "definition"}], ",", 
-      RowBox[{
-       RowBox[{"as", " ", "in", " ", "f", 
-        RowBox[{"(", "x", ")"}]}], "=", 
-       RowBox[{"2", 
-        RowBox[{
-         RowBox[{"(", 
-          RowBox[{"a", "+", 
-           RowBox[{"3", "x"}]}], ")"}], ".", "  ", "Because"}], " ", 
-        "parentheses", " ", "are", " ", "not", " ", "explicitly", " ", 
-        "function", " ", "calls", " ", "or", " ", "multiplication"}]}], ",", 
-      " ", 
-      RowBox[{
-       RowBox[{"the", " ", "general", " ", "problem", " ", "is", " ", "ill"}],
-        "-", 
-       RowBox[{
-        RowBox[{"posed", ".", "  ", "Here"}], " ", "we", " ", "use", " ", 
-        "the", " ", "function", " ", "and", " ", "arguments", " ", "implied", 
-        " ", "by", " ", "the", " ", "left", " ", "hand", " ", "side", " ", 
-        "to", " ", "\"\<fix\>\"", " ", 
-        RowBox[{"Mathematica", "'"}], "s", " ", "naive", " ", "conversion", 
-        " ", "of", " ", "all", " ", "parentheses", " ", "to", " ", "function",
-         " ", 
-        RowBox[{"calls", ".", "  ", "i", ".", "e", ".", " ", "by"}], " ", 
-        "default"}]}], ",", " ", 
-      RowBox[{
-      "Mathematica", " ", "will", " ", "convert", " ", "\"\<f(x)=m(a+3x)\>\"",
-        " ", "to", " ", 
-       RowBox[{"\"\<f[x]=m[a+3x]\>\"", ".", "  ", "This"}], " ", 
-       "demonstrates", " ", "one", " ", "strategy", " ", "to", " ", "avoid", 
-       " ", 
-       RowBox[{"this", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"Local", " ", "variables"}], "*)"}], "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"{", 
       RowBox[{
@@ -161,8 +171,53 @@ Cell[BoxData[
        "*)"}], "\[IndentingNewLine]", 
       RowBox[{
        RowBox[{"expression", "[", "lhs", "]"}], "\[Equal]", "rhs"}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]"}]], "Input",Expressi\
-onUUID->"7816cb11-18eb-4719-99be-1e0962dd0121"]
+    "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.812881232105199*^9, 
+  3.812881235198503*^9}},ExpressionUUID->"7816cb11-18eb-4719-99be-\
+1e0962dd0121"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Testing our function with example LatEX input drawn from ", 
+  "Section"],
+ ButtonBox["Desmos",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.desmos.com/calculator/liypnrwjke"], None},
+  ButtonNote->"https://www.desmos.com/calculator/liypnrwjke"]
+}], "Section",
+ CellChangeTimes->{{3.812881212763801*^9, 3.8128812177916317`*^9}, {
+  3.812881301254822*^9, 3.812881302560541*^9}, {3.812881565622314*^9, 
+  3.812881598888451*^9}},ExpressionUUID->"f160726e-2100-4c23-9f8a-\
+ddbb798c2aaa"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "\"\<'\>\"", "<>", "#", "<>", "\"\<'\>\"", "<>", "\"\< was parsed as \>\"",
+     "<>", 
+    RowBox[{"ToString", "@", 
+     RowBox[{"deTeXify", "@", "#"}]}]}], "&"}], "/@", 
+  RowBox[{
+  "{", "\[IndentingNewLine]", 
+   "\"\<f \\\\left(x \\\\right)=m \\\\left(x-a \\\\right)+b\>\"", 
+   "\[IndentingNewLine]", "}"}]}]], "Input",
+ CellChangeTimes->{{3.812881083501326*^9, 3.8128812046164923`*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"0a1023f3-5fcf-44c5-8e35-7b1f2c5a9eb5"],
+
+Cell[BoxData[
+ RowBox[{"{", "\<\"'f \\\\left(x \\\\right)=m \\\\left(x-a \\\\right)+b' was \
+parsed as f[x] == b + m (-a + x)\"\>", "}"}]], "Output",
+ CellChangeTimes->{3.812881205095166*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"0cd9ca31-b26c-4f81-ac9d-52cc88a00811"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
 },
 WindowSize->{960, 1035},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -181,7 +236,21 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 6540, 144, 619, "Input",ExpressionUUID->"7816cb11-18eb-4719-99be-1e0962dd0121"]
+Cell[CellGroupData[{
+Cell[580, 22, 704, 21, 161, "Title",ExpressionUUID->"f2153bcc-6803-4a04-b63c-cb62dd2b4418"],
+Cell[1287, 45, 873, 14, 127, "Text",ExpressionUUID->"a74dab2c-ac35-496f-9827-43023f63f2d7"],
+Cell[CellGroupData[{
+Cell[2185, 63, 157, 3, 67, "Section",ExpressionUUID->"3e82252c-d53a-46d0-adcb-0c3b002c3e97"],
+Cell[2345, 68, 4789, 108, 493, "Input",ExpressionUUID->"7816cb11-18eb-4719-99be-1e0962dd0121"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7171, 181, 528, 12, 67, "Section",ExpressionUUID->"f160726e-2100-4c23-9f8a-ddbb798c2aaa"],
+Cell[CellGroupData[{
+Cell[7724, 197, 523, 13, 73, "Input",ExpressionUUID->"0a1023f3-5fcf-44c5-8e35-7b1f2c5a9eb5"],
+Cell[8250, 212, 270, 4, 34, "Output",ExpressionUUID->"0cd9ca31-b26c-4f81-ac9d-52cc88a00811"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
 }
 ]
 *)

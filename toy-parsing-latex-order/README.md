@@ -27,3 +27,5 @@ _via_ [the original Slack thread](https://pbllprojectteam.slack.com/archives/C01
 > B: TBC, if we can feed a Desmos page into a function and get "Linear in x" out, we’re done for v0.1.
 > 
 > A: The function in that Mathematica notebook takes a LaTeX expression.  You can see what pulling the data from a Desmos calculator looks like [here](https://github.com/aresnick/get-desmos-mathml), and in [the state screenshot](https://github.com/aresnick/get-desmos-mathml/blob/master/media/calc-state-get.png) you can see that a JSON object representing the calculator includes a `latex` string, which would be the input to the Mathematica function defined above.  Unfortunately, Desmos's handling of LaTeX involves [some gotchas](http://chrislusto.com/desmos/working-with-expressions/#sect-latex-gotchas) which merit testing and checking.
+
+![Example output from attempts to parse expression order](./parsing-order.png)
