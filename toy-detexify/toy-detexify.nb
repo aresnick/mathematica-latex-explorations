@@ -1,0 +1,188 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7447,        180]
+NotebookOptionsPosition[      7102,        166]
+NotebookOutlinePosition[      7493,        182]
+CellTagsIndexPosition[      7450,        179]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"deTeXify", "[", "texString_", "]"}], ":=", 
+   RowBox[{"Module", "[", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{
+      "This", " ", "is", " ", "a", " ", "toy", " ", "function", " ", "which", 
+       " ", "given", " ", "a", " ", "LaTeX", " ", "string"}], ",", " ", 
+      RowBox[{"returns", " ", "a", " ", "Mathematica", " ", 
+       RowBox[{"expression", ".", "  ", "It"}], " ", "was", " ", "written", 
+       " ", "assuming", " ", "the", " ", "input", " ", "string", " ", "is", 
+       " ", "a", " ", "function", " ", "definition"}], ",", 
+      RowBox[{
+       RowBox[{"as", " ", "in", " ", "f", 
+        RowBox[{"(", "x", ")"}]}], "=", 
+       RowBox[{"2", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"a", "+", 
+           RowBox[{"3", "x"}]}], ")"}], ".", "  ", "Because"}], " ", 
+        "parentheses", " ", "are", " ", "not", " ", "explicitly", " ", 
+        "function", " ", "calls", " ", "or", " ", "multiplication"}]}], ",", 
+      " ", 
+      RowBox[{
+       RowBox[{"the", " ", "general", " ", "problem", " ", "is", " ", "ill"}],
+        "-", 
+       RowBox[{
+        RowBox[{"posed", ".", "  ", "Here"}], " ", "we", " ", "use", " ", 
+        "the", " ", "function", " ", "and", " ", "arguments", " ", "implied", 
+        " ", "by", " ", "the", " ", "left", " ", "hand", " ", "side", " ", 
+        "to", " ", "\"\<fix\>\"", " ", 
+        RowBox[{"Mathematica", "'"}], "s", " ", "naive", " ", "conversion", 
+        " ", "of", " ", "all", " ", "parentheses", " ", "to", " ", "function",
+         " ", 
+        RowBox[{"calls", ".", "  ", "i", ".", "e", ".", " ", "by"}], " ", 
+        "default"}]}], ",", " ", 
+      RowBox[{
+      "Mathematica", " ", "will", " ", "convert", " ", "\"\<f(x)=m(a+3x)\>\"",
+        " ", "to", " ", 
+       RowBox[{"\"\<f[x]=m[a+3x]\>\"", ".", "  ", "This"}], " ", 
+       "demonstrates", " ", "one", " ", "strategy", " ", "to", " ", "avoid", 
+       " ", 
+       RowBox[{"this", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "rawExpression", ",", " ", "lhs", ",", " ", "rhs", ",", " ", 
+       "expression", ",", " ", "splitFunctionArgs", ",", " ", "function", ",",
+        " ", "arguments", ",", " ", "makeMultilpicationExplicit", ",", " ", 
+       "rhsFixed"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Extract", " ", "the", " ", "left", " ", "and", " ", "right", " ", 
+       "hand", " ", "sides", " ", "of", " ", "an", " ", "equation"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"lhs", "=", 
+       RowBox[{
+        RowBox[{"StringSplit", "[", 
+         RowBox[{"texString", ",", "\"\<=\>\""}], "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"rhs", "=", 
+       RowBox[{
+        RowBox[{"StringSplit", "[", 
+         RowBox[{"texString", ",", "\"\<=\>\""}], "]"}], "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "A", " ", "function", " ", "to", " ", "convert", " ", "those", " ", 
+        "sides", " ", "to", " ", "expressions"}], "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"expression", "[", "side_", "]"}], ":=", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{"side", ",", "TeXForm"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Pattern", " ", "match", " ", "to", " ", "find", " ", "the", " ", 
+        "function", " ", "and", " ", "arguments", " ", "on", " ", "the", " ", 
+        "left", " ", "hands", " ", "side"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"splitFunctionArgs", "[", 
+        RowBox[{"func_", "[", "args__", "]"}], "]"}], ":=", 
+       RowBox[{"<|", 
+        RowBox[{
+         RowBox[{"\"\<function\>\"", "\[Rule]", "func"}], ",", 
+         RowBox[{"\"\<arguments\>\"", "\[Rule]", 
+          RowBox[{"{", "args", "}"}]}]}], "|>"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"function", "=", 
+       RowBox[{
+        RowBox[{"splitFunctionArgs", "[", "lhs", "]"}], "[", 
+        "\"\<function\>\"", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"arguments", "=", 
+       RowBox[{
+        RowBox[{"splitFunctionArgs", "[", "lhs", "]"}], "[", 
+        "\"\<arguments\>\"", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "A", " ", "function", " ", "which", " ", "takes", " ", "an", " ", 
+        "expression", " ", "and", " ", "a", " ", "list", " ", "of", " ", 
+        "functions", " ", "and", " ", "converts", " ", "all", " ", "symbols", 
+        " ", "called", " ", "as", " ", "functions", " ", "which", " ", "are", 
+        " ", "not", " ", "in", " ", "the", " ", "given", " ", "list", " ", 
+        "to", " ", "multiplication"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"makeMultilpicationExplicit", "[", 
+        RowBox[{"expression_", ",", " ", "functions_"}], "]"}], ":=", 
+       RowBox[{"expression", "/.", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"var_", "[", "body__", "]"}], "/;", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"!", 
+             RowBox[{"MemberQ", "[", 
+              RowBox[{"functions", ",", "var"}], "]"}]}], "&&", 
+            RowBox[{
+             RowBox[{"Length", "[", 
+              RowBox[{"{", "body", "}"}], "]"}], "\[Equal]", "1"}]}], ")"}]}],
+          "\[Rule]", 
+         RowBox[{"Times", "[", 
+          RowBox[{"var", ",", "body"}], "]"}]}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Use", " ", "this", " ", "function", " ", "to", " ", "\"\<fix\>\"", 
+        " ", "the", " ", "naive", " ", "conversion", " ", "of", " ", 
+        "parnetheses", " ", "to", " ", "function", " ", "calls", " ", "in", 
+        " ", "the", " ", "LaTeX"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"rhsFixed", "=", 
+       RowBox[{"makeMultilpicationExplicit", "[", 
+        RowBox[{
+         RowBox[{"expression", "[", "rhs", "]"}], ",", 
+         RowBox[{"{", "function", "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"Return", " ", "the", " ", "original", " ", "equality"}], 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"expression", "[", "lhs", "]"}], "\[Equal]", "rhs"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]"}]], "Input",Expressi\
+onUUID->"7816cb11-18eb-4719-99be-1e0962dd0121"]
+},
+WindowSize->{960, 1035},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 9, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"3d657218-7760-4f8d-a6ea-ae5694587784"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 6540, 144, 619, "Input",ExpressionUUID->"7816cb11-18eb-4719-99be-1e0962dd0121"]
+}
+]
+*)
+
