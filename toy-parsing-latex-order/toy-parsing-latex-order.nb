@@ -263,8 +263,62 @@ Cell[BoxData[
           RowBox[{"\"\<periods\>\"", "\[Rule]", "periods"}]}], 
          "\[IndentingNewLine]", "|>"}]}]}], "\[IndentingNewLine]", "|>"}]}]}],
     "\[IndentingNewLine]", "]"}]}]], "Input",
- CellLabel->
-  "In[19]:=",ExpressionUUID->"0e371172-3aad-4c81-944f-6a448f70255d"]
+ CellLabel->"In[3]:=",ExpressionUUID->"0e371172-3aad-4c81-944f-6a448f70255d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"detectOrderOfTeXExpression", "[", "\"\<3^{(x-2)}+4\>\"", 
+  "]"}]], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"72ee5b0f-3c91-4456-afe2-6740440c01e7"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"degree\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{"x", "\[Rule]", 
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"Linear\"\>", "\[Rule]", "True"}], ",", 
+        RowBox[{"\<\"Quadratic\"\>", "\[Rule]", "False"}], ",", 
+        RowBox[{"\<\"Cubic\"\>", "\[Rule]", "False"}], ",", 
+        RowBox[{"\<\"Higher Order Polynomial\"\>", "\[Rule]", "False"}], ",", 
+        
+        RowBox[{"\<\"Exponential\"\>", "\[Rule]", "False"}]}], 
+       "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"\<\"character\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"Has Constant Term\"\>", "\[Rule]", "False"}], ",", 
+      RowBox[{"\<\"Complex\"\>", "\[Rule]", "False"}], ",", 
+      RowBox[{"\<\"Periodic\"\>", "\[Rule]", "False"}]}], 
+     "\[RightAssociation]"}]}], ",", 
+   RowBox[{"\<\"data\"\>", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"expression\"\>", "\[Rule]", 
+       RowBox[{"4", "+", 
+        SuperscriptBox["3", 
+         RowBox[{
+          RowBox[{"-", "2"}], "+", "x"}]]}]}], ",", 
+      RowBox[{"\<\"monomials\"\>", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"4", "+", 
+         SuperscriptBox["3", 
+          RowBox[{
+           RowBox[{"-", "2"}], "+", "x"}]]}], "}"}]}], ",", 
+      RowBox[{"\<\"variables\"\>", "\[Rule]", 
+       RowBox[{"{", "x", "}"}]}], ",", 
+      RowBox[{"\<\"exponents\"\>", "\[Rule]", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{"x", "\[Rule]", 
+         RowBox[{"{", "1", "}"}]}], "\[RightAssociation]"}]}], ",", 
+      RowBox[{"\<\"periods\"\>", "\[Rule]", 
+       RowBox[{"{", "0", "}"}]}]}], "\[RightAssociation]"}]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[8]=",ExpressionUUID->"90b0c94c-01de-4eea-b20f-6edfd31ae82c"]
+}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -343,7 +397,9 @@ Cell[BoxData[
           RowBox[{"characterDesc", ",", " ", "\"\< & \>\""}], "]"}]}], 
         "]"}]}], " ", "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]",
     "]"}]}]], "Input",
- CellLabel->"In[20]:=",ExpressionUUID->"8d639b8d-f9c8-4ca7-a0d3-9671d16ecfe0"],
+ CellLabel->"In[5]:=",ExpressionUUID->"8d639b8d-f9c8-4ca7-a0d3-9671d16ecfe0"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
@@ -376,16 +432,662 @@ Cell[BoxData[
    RowBox[{"TextGrid", "[", 
     RowBox[{"#", ",", 
      RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}], "&"}]}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"c5543d8d-f84d-407b-843e-f558957ce063"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {Cell[
+     "Expression",ExpressionUUID->"e36a8c76-1430-4d18-9e22-52f39783b57d"], 
+     Cell["Degree",ExpressionUUID->"c5540c9a-8774-4e80-a170-46b0364a37ef"], 
+     Cell["Character",ExpressionUUID->"9f22877d-7e14-4054-b55e-64d36cd75605"]},
+    {
+     TagBox[
+      FormBox["x",
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], Cell[
+     "Linear in x",ExpressionUUID->"cd19fb83-fafb-4d39-b636-d3d441a51a63"], 
+     Cell["",ExpressionUUID->"537e22fd-db95-4231-8a86-25e75ebbbf8a"]},
+    {
+     TagBox[
+      FormBox[
+       SuperscriptBox["x", "2"],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], Cell[
+     "Quadratic in x",ExpressionUUID->"dfab8a26-5bd3-4b41-afbe-828489793c13"],
+      Cell["",ExpressionUUID->"b8dd827c-b008-4dc5-843c-70c9bb883bbf"]},
+    {
+     TagBox[
+      FormBox[
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"x", "+", "1"}], ")"}], "2"],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], Cell[
+     "Linear & Quadratic in x",ExpressionUUID->
+      "6d890e15-0c79-4980-9b3b-efd3e844d9f3"], Cell[
+     "Has Constant Term",ExpressionUUID->
+      "2b97545e-5430-48fb-aadd-7bb5dcad60d6"]},
+    {
+     TagBox[
+      FormBox[
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x", "-", "1"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"x", "+", "1"}], ")"}]}],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], Cell[
+     "Quadratic in x",ExpressionUUID->"b00ba50a-3889-4a22-9c16-f8b734b5ceee"],
+      Cell["Has Constant Term",ExpressionUUID->
+      "592f68bb-bd30-4f27-b5c7-4ad3e7820a1e"]},
+    {
+     TagBox[
+      FormBox[
+       SuperscriptBox["e", "x"],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], Cell["\<\
+Exponential in e
+Linear in x\
+\>",ExpressionUUID->"d041c9b2-9c05-451f-a941-efb049c8a85b"], Cell[
+     "",ExpressionUUID->"fc3dc7f3-695c-4832-9c4f-1ec9a89af1b8"]},
+    {
+     TagBox[
+      FormBox[
+       SuperscriptBox["e", 
+        SuperscriptBox["x", "2"]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], Cell["\<\
+Exponential in e
+Quadratic in x\
+\>",ExpressionUUID->"c9260c84-12c0-4f11-8296-ca065dbabca2"], Cell[
+     "",ExpressionUUID->"4a37fc56-eea7-40fd-b2ee-2abfbda22f72"]},
+    {
+     TagBox[
+      FormBox[
+       RowBox[{"sin", "(", "x", ")"}],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], Cell[
+     "Linear in x",ExpressionUUID->"2a101eac-6c44-44e6-948d-f53b420c8384"], 
+     Cell["Periodic",ExpressionUUID->
+      "fb339ba9-f7be-42f2-9303-47d296eb697a"]},
+    {
+     TagBox[
+      FormBox[
+       RowBox[{
+        SuperscriptBox["sin", "2"], "(", "x", ")"}],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], Cell[
+     "Linear in x",ExpressionUUID->"732f5694-746b-408a-8fd6-a82f0c964314"], 
+     Cell["Periodic",ExpressionUUID->"4cdf33ea-f0b5-4fc7-bb49-40c041b67c28"]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "TextGrid"]], "Output",
+ CellLabel->"Out[6]=",ExpressionUUID->"ef03f6d5-8f39-4740-85a2-63cb45c56597"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Improving the extraction of exponents", \
+"Section",ExpressionUUID->"9c4db6a0-3e5a-456f-af9a-abdbc556a5b6"],
+
+Cell[TextData[{
+ "In our earlier functions, because we are only looking at variables, we can \
+easily miss exponentiation involving variables if the base is a constant, as \
+in ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["3", "x"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "0cb6dff8-dd8d-4f6b-93b1-141a07bc0024"],
+ ".  We can improve on this by recognizing that we can treat expressions as \
+trees.  Let\[CloseCurlyQuote]s consider ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"4", "+", 
+    SuperscriptBox["3", 
+     RowBox[{"x", "-", "2"}]]}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "77a53464-e4af-4785-9f9d-17ca0ebf72b1"],
+ "\[Ellipsis]"
+}], "Text",ExpressionUUID->"de583084-b380-4f1d-a6b2-d935a896f00f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TreeForm", "[", 
+  RowBox[{"4", "+", 
+   RowBox[{"3", "^", "x"}], "-", "2"}], "]"}]], "Input",
+ CellLabel->"In[49]:=",ExpressionUUID->"a25bbb10-fd5d-4bdd-b708-576cc8f1f351"],
+
+Cell[BoxData[
+ InterpretationBox[
+  GraphicsBox[
+   TagBox[
+    GraphicsComplexBox[{{0.4472135954999579, 1.7888543819998317`}, {0., 
+     0.8944271909999159}, {0.8944271909999159, 0.8944271909999159}, {
+     0.4472135954999579, 0.}, {1.3416407864998738`, 0.}}, {
+      {RGBColor[0.55, 0.45, 0.45], 
+       LineBox[{{1, 2}, {1, 3}, {3, 4}, {3, 5}}]}, {
+       TagBox[
+        TooltipBox[InsetBox[
+          FrameBox[
+           StyleBox["Plus", "StandardForm", "Output",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontSize->Scaled[0.05],
+            FontColor->GrayLevel[0]],
+           Background->RGBColor[1., 1., 0.871],
+           FrameStyle->GrayLevel[0.5],
+           StripOnInput->False], 1],
+         TagBox[
+          RowBox[{"2", "+", 
+            SuperscriptBox["3", "x"]}], HoldForm]],
+        Annotation[#, 
+         HoldForm[2 + 3^$CellContext`x], "Tooltip"]& ], 
+       TagBox[
+        TooltipBox[InsetBox[
+          FrameBox[
+           StyleBox[
+            TagBox["2",
+             HoldForm], "StandardForm", "Output",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontSize->Scaled[0.05],
+            FontColor->GrayLevel[0]],
+           Background->RGBColor[1., 1., 0.871],
+           FrameStyle->GrayLevel[0.5],
+           StripOnInput->False], 2],
+         TagBox["2", HoldForm]],
+        Annotation[#, 
+         HoldForm[2], "Tooltip"]& ], 
+       TagBox[
+        TooltipBox[InsetBox[
+          FrameBox[
+           StyleBox["Power", "StandardForm", "Output",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontSize->Scaled[0.05],
+            FontColor->GrayLevel[0]],
+           Background->RGBColor[1., 1., 0.871],
+           FrameStyle->GrayLevel[0.5],
+           StripOnInput->False], 3],
+         TagBox[
+          SuperscriptBox["3", "x"], HoldForm]],
+        Annotation[#, 
+         HoldForm[3^$CellContext`x], "Tooltip"]& ], 
+       TagBox[
+        TooltipBox[InsetBox[
+          FrameBox[
+           StyleBox[
+            TagBox["3",
+             HoldForm], "StandardForm", "Output",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontSize->Scaled[0.05],
+            FontColor->GrayLevel[0]],
+           Background->RGBColor[1., 1., 0.871],
+           FrameStyle->GrayLevel[0.5],
+           StripOnInput->False], 4],
+         TagBox["3", HoldForm]],
+        Annotation[#, 
+         HoldForm[3], "Tooltip"]& ], 
+       TagBox[
+        TooltipBox[InsetBox[
+          FrameBox[
+           StyleBox[
+            TagBox["x",
+             HoldForm], "StandardForm", "Output",
+            StripOnInput->False,
+            LineColor->GrayLevel[0],
+            FrontFaceColor->GrayLevel[0],
+            BackFaceColor->GrayLevel[0],
+            GraphicsColor->GrayLevel[0],
+            FontSize->Scaled[0.05],
+            FontColor->GrayLevel[0]],
+           Background->RGBColor[1., 1., 0.871],
+           FrameStyle->GrayLevel[0.5],
+           StripOnInput->False], 5],
+         TagBox["x", HoldForm]],
+        Annotation[#, 
+         HoldForm[$CellContext`x], "Tooltip"]& ]}}],
+    Annotation[#, 
+     VertexCoordinateRules -> {{0.4472135954999579, 1.7888543819998317`}, {0.,
+       0.8944271909999159}, {0.8944271909999159, 0.8944271909999159}, {
+      0.4472135954999579, 0.}, {1.3416407864998738`, 0.}}]& ],
+   AspectRatio->1,
+   FormatType:>StandardForm,
+   FrameTicks->Automatic,
+   PlotRange->All,
+   PlotRangePadding->Scaled[0.1]],
+  TreeForm[2 + 3^$CellContext`x],
+  Editable->False]], "Output",
  CellLabel->
-  "In[21]:=",ExpressionUUID->"c5543d8d-f84d-407b-843e-f558957ce063"]
+  "Out[49]//TreeForm=",ExpressionUUID->"ff2eb7ee-07db-40b2-b6c0-fdad7772d960"]\
+
+}, Open  ]],
+
+Cell[TextData[{
+ "We\[CloseCurlyQuote]re looking to look at the expression at each level and \
+ascertain whether the base or the exponent (",
+ StyleBox["i.e.",
+  FontSlant->"Italic"],
+ " either argument to `Power`)."
+}], "Text",ExpressionUUID->"7878d58c-37c1-4970-bbbd-b52707aacc5b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Level", "[", 
+  RowBox[{
+   RowBox[{"4", "+", 
+    RowBox[{"3", "^", "x"}], "-", "2"}], ",", 
+   RowBox[{"{", "0", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Level", "[", 
+  RowBox[{
+   RowBox[{"4", "+", 
+    RowBox[{"3", "^", "x"}], "-", "2"}], ",", 
+   RowBox[{"{", "1", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Level", "[", 
+  RowBox[{
+   RowBox[{"4", "+", 
+    RowBox[{"3", "^", "x"}], "-", "2"}], ",", 
+   RowBox[{"{", "2", "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[51]:=",ExpressionUUID->"652df7ab-81e9-4e0b-9841-b43d0b13ab97"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"2", "+", 
+   SuperscriptBox["3", "x"]}], "}"}]], "Output",
+ CellLabel->"Out[51]=",ExpressionUUID->"24376feb-091d-4db8-9598-0b79b4daac3f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"2", ",", 
+   SuperscriptBox["3", "x"]}], "}"}]], "Output",
+ CellLabel->"Out[52]=",ExpressionUUID->"38cdcedb-4d64-4cbc-9dda-fc691ed39547"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"3", ",", "x"}], "}"}]], "Output",
+ CellLabel->
+  "Out[53]=",ExpressionUUID->"960ff079-5fab-42bc-abfe-ceae5d6d88d9"]
+}, Open  ]],
+
+Cell[TextData[{
+ "We can do this using ",
+ Cell[BoxData[
+  FormBox[
+   ButtonBox["Cases",
+    BaseStyle->"Link",
+    ButtonData->"paclet:ref/Cases"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "e9fc9d4e-e784-4f9e-b7fc-32d7e601d20d"],
+ ", which can be targeted to a particular level using the ",
+ StyleBox["levelspec",
+  FontSlant->"Italic"],
+ " parameter."
+}], "Text",ExpressionUUID->"96a12486-68d2-49cd-b5d5-a14542f189b5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Cases", "[", 
+  RowBox[{
+   RowBox[{"4", "+", 
+    RowBox[{"3", "^", "x"}], "-", "2"}], ",", 
+   RowBox[{"Power", "[", 
+    RowBox[{"_", ",", "_"}], "]"}], ",", 
+   RowBox[{"{", "0", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Cases", "[", 
+  RowBox[{
+   RowBox[{"4", "+", 
+    RowBox[{"3", "^", "x"}], "-", "2"}], ",", 
+   RowBox[{"Power", "[", 
+    RowBox[{"_", ",", "_"}], "]"}], ",", 
+   RowBox[{"{", "1", "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Cases", "[", 
+  RowBox[{
+   RowBox[{"4", "+", 
+    RowBox[{"3", "^", "x"}], "-", "2"}], ",", 
+   RowBox[{"Power", "[", 
+    RowBox[{"_", ",", "_"}], "]"}], ",", 
+   RowBox[{"{", "2", "}"}]}], "]"}]}], "Input",
+ CellLabel->"In[54]:=",ExpressionUUID->"d21f0679-5914-4044-8481-1b75c6e38e2f"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellLabel->"Out[54]=",ExpressionUUID->"36b69b24-307d-46eb-bafb-469f5f97bf2f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  SuperscriptBox["3", "x"], "}"}]], "Output",
+ CellLabel->"Out[55]=",ExpressionUUID->"99b3ed2d-0ce4-44ef-ade9-2e9ab771a81c"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellLabel->
+  "Out[56]=",ExpressionUUID->"e885f4f5-adb2-4722-8f69-3c8afc69ebbf"]
+}, Open  ]],
+
+Cell[TextData[{
+ "This matches since we\[CloseCurlyQuote]re using ",
+ ButtonBox["patterns to match any expression involving two arguments to \
+`Power`.  Noting that a term may appear with a variable but no explicit power \
+(",
+  BaseStyle->"Link",
+  ButtonData->"paclet:tutorial/Patterns#139"],
+ StyleBox[ButtonBox["e.g.",
+  BaseStyle->"Link",
+  ButtonData->"paclet:tutorial/Patterns#139"],
+  FontSlant->"Italic"],
+ ButtonBox[" ",
+  BaseStyle->"Link",
+  ButtonData->"paclet:tutorial/Patterns#139"],
+ Cell[BoxData[
+  FormBox["x", TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "b795a9b9-e7f1-4191-89f7-727e2966bfcf"],
+ " is not represented as `Power[x,1]` internally), we can create a simple \
+function to extract exponents from an expression containing a variable as \
+follows\[Ellipsis]"
+}], "Text",ExpressionUUID->"7d4c3edb-b34f-4748-b823-914a8e88ff75"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"extractExponents", "[", 
+    RowBox[{"expression_", ",", "variable_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", "explicitPowers", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"With", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"coeffs", "=", 
+          RowBox[{
+           RowBox[{"CoefficientList", "[", 
+            RowBox[{"expression", ",", "variable"}], "]"}], "[", 
+           RowBox[{"[", 
+            RowBox[{"2", ";;"}], "]"}], "]"}]}], ",", " ", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"For", " ", "convenience"}], ",", " ", 
+           RowBox[{
+           "a", " ", "coefficient", " ", "list", " ", "dropping", " ", "the", 
+            " ", "constant", " ", 
+            RowBox[{"(", 
+             RowBox[{"zeroth", " ", "degree"}], ")"}], " ", "term"}]}], 
+          "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"expandedExpression", "=", 
+          RowBox[{"Expand", "[", "expression", "]"}]}]}], " ", 
+        RowBox[{"(*", 
+         RowBox[{
+         "Expanding", " ", "to", " ", "capture", " ", "degeree", " ", "in", 
+          " ", "expressions", " ", "like", " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "+", "x"}], ")"}], "^", "2"}]}], "*)"}], 
+        "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"explicitPowers", "=", 
+         RowBox[{"Merge", "[", 
+          RowBox[{
+           RowBox[{"{", " ", 
+            RowBox[{"(*", 
+             RowBox[{
+              RowBox[{"Merge", " ", "two", " ", "associations"}], ",", " ", 
+              RowBox[{
+              "creating", " ", "a", " ", "list", " ", "from", " ", "values", 
+               " ", "with", " ", "shared", " ", "keys"}]}], "*)"}], 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"Cases", "[", 
+              RowBox[{"expandedExpression", ",", 
+               RowBox[{
+                RowBox[{"Power", "[", 
+                 RowBox[{"base_", ",", "power_"}], "]"}], "\[RuleDelayed]", 
+                RowBox[{"<|", 
+                 RowBox[{"base", "\[Rule]", "power"}], "|>"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}], ",", 
+             RowBox[{"(*", 
+              RowBox[{
+              "Looking", " ", "for", " ", "cases", " ", "at", " ", "all", " ",
+                "levels", " ", "in", " ", "expression", " ", "where", " ", 
+               "a", " ", "base", " ", "is", " ", "raise", " ", "to", " ", "a",
+                " ", "power", " ", "and", " ", "returning", " ", "the", " ", 
+               "map", " ", "between", " ", "those"}], "*)"}], 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Length", "[", "coeffs", "]"}], "\[GreaterEqual]", 
+                "1"}], ",", 
+               RowBox[{"(*", 
+                RowBox[{
+                "If", " ", "we", " ", "have", " ", "a", " ", "coefficient", 
+                 " ", "list"}], "*)"}], "\[IndentingNewLine]", 
+               RowBox[{"<|", 
+                RowBox[{"variable", "\[Rule]", 
+                 RowBox[{"Position", "[", 
+                  RowBox[{"coeffs", ",", 
+                   RowBox[{"_", "?", "Positive"}]}], "]"}]}], "|>"}], ",", 
+               RowBox[{"(*", 
+                RowBox[{
+                "Return", " ", "a", " ", "mapping", " ", "of", " ", "the", 
+                 " ", "variable", " ", "to", " ", "the", " ", "indices", " ", 
+                 "of", " ", "all", " ", "the", " ", "positive", " ", 
+                 "coefficients", " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"1", " ", "for", " ", "linear"}], ",", " ", 
+                   RowBox[{"2", " ", "for", " ", "quadratic"}], ",", " ", 
+                   RowBox[{"etc", "."}]}], " ", ")"}], " ", "Note", " ", 
+                 "that", " ", "this", " ", "works", " ", "because", " ", "we",
+                  " ", "truncated", " ", "the", " ", "zeroth", " ", "degree", 
+                 " ", "iwhen", " ", "defining", " ", "coeffs"}], "*)"}], 
+               "\[IndentingNewLine]", 
+               RowBox[{"<|", "|>"}]}], "]"}]}], "\[IndentingNewLine]", "}"}], 
+           ",", "\[IndentingNewLine]", 
+           RowBox[{"DeleteDuplicates", "@*", "Flatten"}]}], " ", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Here", " ", "we", " ", "use", " ", "the", " ", "Identity", " ", 
+            "function", " ", "to", " ", "combine", " ", "the", " ", "values", 
+            " ", "for", " ", "shard", " ", "keys", " ", "so", " ", "that", 
+            " ", "we", " ", "simply", " ", "get", " ", "a", " ", 
+            RowBox[{"list", "."}]}], "*)"}], "\[IndentingNewLine]", "]"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"KeySelect", "[", " ", 
+         RowBox[{"(*", 
+          RowBox[{"Now", " ", 
+           RowBox[{"we", "'"}], "re", " ", "going", " ", "to", " ", "select", 
+           " ", "from", " ", "this", " ", "association", " ", 
+           RowBox[{"(", 
+            RowBox[{
+            "which", " ", "contains", " ", "bases", " ", "mapped", " ", "to", 
+             " ", "exponents"}], ")"}]}], "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"explicitPowers", ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"!", 
+             RowBox[{"FreeQ", "[", 
+              RowBox[{"#", ",", "variable"}], "]"}]}], 
+            RowBox[{"(*", " ", 
+             RowBox[{
+             "Looking", " ", "for", " ", "cases", " ", "where", " ", "either",
+               " ", "the", " ", "key", " ", 
+              RowBox[{"(", "base", ")"}], " ", "contains", " ", "the", " ", 
+              "variable"}], "*)"}], "\[IndentingNewLine]", "||", 
+            RowBox[{"!", 
+             RowBox[{"FreeQ", "[", 
+              RowBox[{
+               RowBox[{"explicitPowers", "[", "#", "]"}], ",", "variable"}], 
+              "]"}]}]}], "&"}]}], 
+         RowBox[{"(*", 
+          RowBox[{
+          "Or", " ", "cases", " ", "where", " ", "the", " ", "value", " ", 
+           RowBox[{"(", "exponent", ")"}], " ", "contains", " ", "the", " ", 
+           "variable"}], "*)"}], "\[IndentingNewLine]", "]"}]}]}], " ", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"And", " ", "returning", " ", "the", " ", "resulting"}], ",", 
+        " ", 
+        RowBox[{"filtered", " ", "association"}]}], "*)"}], 
+      "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ CellLabel->
+  "In[192]:=",ExpressionUUID->"1c5809d1-19fd-4759-9381-2648539d8b57"],
+
+Cell[CellGroupData[{
+
+Cell["Testing our function for extracting exponents", \
+"Subsection",ExpressionUUID->"e47a0857-cd18-410e-a90b-13e3ce7c88e2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"extractExponents", "[", 
+  RowBox[{
+   RowBox[{"4", "+", 
+    RowBox[{"3", "^", 
+     RowBox[{"(", 
+      RowBox[{"x", "-", "2"}], ")"}]}]}], ",", "x"}], "]"}]], "Input",
+ CellLabel->
+  "In[193]:=",ExpressionUUID->"46bcb466-04e0-4e0e-aea0-c66bd8ec061b"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"3", "\[Rule]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "2"}], "+", "x"}], "}"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[193]=",ExpressionUUID->"53cd9de6-a4ff-4178-864b-e461ff79abed"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToExpression", "[", 
+    RowBox[{"#", ",", "TeXForm"}], "]"}], "&"}], "/@", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<x\>\"", ",", "\[IndentingNewLine]", "\"\<x^2\>\"", ",", 
+    "\[IndentingNewLine]", "\"\<(x+1)(x+1)\>\"", ",", "\[IndentingNewLine]", 
+    "\"\<(x+1)(x-1)\>\"", ",", "\[IndentingNewLine]", "\"\<e^x\>\"", ",", 
+    "\[IndentingNewLine]", "\"\<e^(x^2)\>\"", ",", "\[IndentingNewLine]", 
+    "\"\<\\\\sin(x)\>\"", ",", "\[IndentingNewLine]", 
+    "\"\<(\\\\sin(x))^2\>\""}], "\[IndentingNewLine]", "}"}]}]], "Input",
+ CellLabel->
+  "In[196]:=",ExpressionUUID->"9551aa49-01a8-4f0c-99c9-c49d2f741c91"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"x", ",", 
+   SuperscriptBox["x", "2"], ",", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "+", "x"}], ")"}], "2"], ",", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "x"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", "x"}], ")"}]}], ",", 
+   SuperscriptBox["e", "x"], ",", 
+   SuperscriptBox["e", 
+    SuperscriptBox["x", "2"]], ",", 
+   RowBox[{"Sin", "[", "x", "]"}], ",", 
+   SuperscriptBox[
+    RowBox[{"Sin", "[", "x", "]"}], "2"]}], "}"}]], "Output",
+ CellLabel->"Out[196]=",ExpressionUUID->"fcb0f5db-13f6-4608-b70e-aa6a37a1e2c7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"extractExponents", "[", 
+    RowBox[{"#", ",", "x"}], "]"}], "&"}], "/@", "%"}]], "Input",
+ CellLabel->
+  "In[197]:=",ExpressionUUID->"c70b6ef5-8f4e-4f0a-b6ba-11e435c1569d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"{", "1", "}"}]}], "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"{", "2", "}"}]}], "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1"}], "}"}]}], "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"{", "2", "}"}]}], "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{"e", "\[Rule]", 
+     RowBox[{"{", "x", "}"}]}], "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", 
+      RowBox[{"{", "2", "}"}]}], ",", 
+     RowBox[{"e", "\[Rule]", 
+      RowBox[{"{", 
+       SuperscriptBox["x", "2"], "}"}]}]}], "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}], ",", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"Sin", "[", "x", "]"}], "\[Rule]", 
+     RowBox[{"{", "2", "}"}]}], "\[RightAssociation]"}]}], "}"}]], "Output",
+ CellLabel->"Out[197]=",ExpressionUUID->"745b6318-4aad-423c-9efc-6bc49b87d427"]
+}, Open  ]],
+
+Cell["\<\
+Note that this does not yet work when x is an argument of a function itself \
+(as in the Sin) cases.\
+\>", "Text",ExpressionUUID->"b52139c8-eaaa-4a41-b40f-313cd8a57027"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{960, 1035},
-WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+WindowSize->{1920, 1035},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 9, 2020)",
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 19, 2020)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"86ca686e-64c5-4d8f-b702-a9b258ecada6"
 ]
+
