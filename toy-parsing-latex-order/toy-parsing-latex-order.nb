@@ -547,8 +547,7 @@ easily miss exponentiation involving variables if the base is a constant, as \
 in ",
  Cell[BoxData[
   FormBox[
-   SuperscriptBox["3", "x"], TraditionalForm]],
-  FormatType->"TraditionalForm",ExpressionUUID->
+   SuperscriptBox["3", "x"], TraditionalForm]],ExpressionUUID->
   "0cb6dff8-dd8d-4f6b-93b1-141a07bc0024"],
  ".  We can improve on this by recognizing that we can treat expressions as \
 trees.  Let\[CloseCurlyQuote]s consider ",
@@ -556,8 +555,7 @@ trees.  Let\[CloseCurlyQuote]s consider ",
   FormBox[
    RowBox[{"4", "+", 
     SuperscriptBox["3", 
-     RowBox[{"x", "-", "2"}]]}], TraditionalForm]],
-  FormatType->"TraditionalForm",ExpressionUUID->
+     RowBox[{"x", "-", "2"}]]}], TraditionalForm]],ExpressionUUID->
   "77a53464-e4af-4785-9f9d-17ca0ebf72b1"],
  "\[Ellipsis]"
 }], "Text",ExpressionUUID->"de583084-b380-4f1d-a6b2-d935a896f00f"],
@@ -742,8 +740,7 @@ Cell[TextData[{
   FormBox[
    ButtonBox["Cases",
     BaseStyle->"Link",
-    ButtonData->"paclet:ref/Cases"], TraditionalForm]],
-  FormatType->"TraditionalForm",ExpressionUUID->
+    ButtonData->"paclet:ref/Cases"], TraditionalForm]],ExpressionUUID->
   "e9fc9d4e-e784-4f9e-b7fc-32d7e601d20d"],
  ", which can be targeted to a particular level using the ",
  StyleBox["levelspec",
@@ -807,8 +804,7 @@ Cell[TextData[{
   BaseStyle->"Link",
   ButtonData->"paclet:tutorial/Patterns#139"],
  Cell[BoxData[
-  FormBox["x", TraditionalForm]],
-  FormatType->"TraditionalForm",ExpressionUUID->
+  FormBox["x", TraditionalForm]],ExpressionUUID->
   "b795a9b9-e7f1-4191-89f7-727e2966bfcf"],
  " is not represented as `Power[x,1]` internally), we can create a simple \
 function to extract exponents from an expression containing a variable as \
@@ -916,11 +912,11 @@ Cell[BoxData[
            RowBox[{"DeleteDuplicates", "@*", "Flatten"}]}], " ", 
           RowBox[{"(*", 
            RowBox[{
-           "Here", " ", "we", " ", "use", " ", "the", " ", "Identity", " ", 
-            "function", " ", "to", " ", "combine", " ", "the", " ", "values", 
-            " ", "for", " ", "shard", " ", "keys", " ", "so", " ", "that", 
-            " ", "we", " ", "simply", " ", "get", " ", "a", " ", 
-            RowBox[{"list", "."}]}], "*)"}], "\[IndentingNewLine]", "]"}]}], 
+           "Here", " ", "we", " ", "remove", " ", "any", " ", "duplicates", 
+            " ", "and", " ", "nested", " ", "lists", " ", "introduced", " ", 
+            "by", " ", "merging", " ", "values", " ", "for", " ", "shared", 
+            " ", 
+            RowBox[{"keys", "."}]}], "*)"}], "\[IndentingNewLine]", "]"}]}], 
         ";", "\[IndentingNewLine]", 
         RowBox[{"KeySelect", "[", " ", 
          RowBox[{"(*", 
@@ -959,9 +955,7 @@ Cell[BoxData[
         " ", 
         RowBox[{"filtered", " ", "association"}]}], "*)"}], 
       "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
-  ";"}]], "Input",
- CellLabel->
-  "In[192]:=",ExpressionUUID->"1c5809d1-19fd-4759-9381-2648539d8b57"],
+  ";"}]], "Input",ExpressionUUID->"1c5809d1-19fd-4759-9381-2648539d8b57"],
 
 Cell[CellGroupData[{
 
